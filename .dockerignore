@@ -1,0 +1,6 @@
+.git
+**/build/
+**/.gradle/
+*.apk
+data/orders.json
+data/tokens.json

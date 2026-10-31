@@ -1,0 +1,8 @@
+**/build/
+**/.gradle/
+local.properties
+api_php/data/orders.json
+api_php/data/tokens.json
+!api_php/data/README.txt
+*.jks
+*.keystore
