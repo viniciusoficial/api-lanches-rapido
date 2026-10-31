@@ -1,0 +1,1 @@
+Este diretório recebe users.json, products.json, orders.json e tokens.json na primeira execução. Mantenha-o fora do document root público, com permissões restritas ao usuário PHP. Faça backup consistente antes de atualizações. Não inclua dados reais de clientes nos commits ou em arquivos distribuídos.

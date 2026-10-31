@@ -1,0 +1,34 @@
+[
+    {
+        "id": "p1",
+        "name": "Lanche Rápido Clássico",
+        "category": "Hambúrgueres",
+        "description": "Burger artesanal, queijo, molho da casa.",
+        "price": 24.9,
+        "available": true
+    },
+    {
+        "id": "p2",
+        "name": "X-Bacon da Chapa",
+        "category": "X-Bacon",
+        "description": "Hambúrguer, queijo e bacon crocante.",
+        "price": 29.9,
+        "available": true
+    },
+    {
+        "id": "p3",
+        "name": "Batata frita",
+        "category": "Acompanhamentos",
+        "description": "Porção individual.",
+        "price": 12,
+        "available": true
+    },
+    {
+        "id": "p4",
+        "name": "Refrigerante lata",
+        "category": "Bebidas",
+        "description": "350 ml.",
+        "price": 6,
+        "available": true
+    }
+]
