@@ -7,16 +7,28 @@ RUN apt-get update \
     && docker-php-ext-install curl \
     && rm -rf /var/lib/apt/lists/*
 
-# O contexto de build do Render deve ser api_php/.
-# A pasta public contém o router PHP; src/ e data/ ficam ao lado dela.
+# O contexto do Render deve ser api_php/.
 COPY . /app
-COPY php.ini /usr/local/etc/php/conf.d/zz-lancherapido.ini
+COPY docker-entrypoint.sh /usr/local/bin/lancherapido-entrypoint.sh
 
-# O disco persistente do Render deve ser montado aqui.
-RUN mkdir -p /app/data
+# O disco persistente do Render, se configurado, deve ser montado em /app/data.
+RUN mkdir -p /app/data \
+    && chmod +x /usr/local/bin/lancherapido-entrypoint.sh \
+    && printf '%s\n' \
+        '[PHP]' \
+        'expose_php = Off' \
+        'display_errors = Off' \
+        'display_startup_errors = Off' \
+        'log_errors = On' \
+        'error_log = /proc/self/fd/2' \
+        'default_charset = UTF-8' \
+        'memory_limit = 128M' \
+        'max_execution_time = 30' \
+        'post_max_size = 8M' \
+        > /usr/local/etc/php/conf.d/zz-lancherapido.ini
 
 ENV PORT=10000
 EXPOSE 10000
 
-# index.php atua como router para /health, /products, /orders e demais rotas.
-CMD ["sh", "-c", "exec php -S 0.0.0.0:${PORT:-10000} -t /app/public /app/public/index.php"]
+# Opcionalmente cria/atualiza a conta admin pelas variáveis seguras do serviço.
+ENTRYPOINT ["/usr/local/bin/lancherapido-entrypoint.sh"]
